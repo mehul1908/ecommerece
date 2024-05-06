@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block 'title' %}
+    LIST OF pRO CAT
+{% endblock 'title' %}
+    
+
+{% block 'body' %}
+<h1>Product category List</h1>
+    <table class="table table-center text-center" style="margin: 20px;"> 
+        <thead>
+            <tr>
+                <th>Category Id</th>
+                <th>Category Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for dt in data %}
+            <tr>
+                <td>{{dt.pcid}}</td>
+                <td>{{dt.pcname}}</td>
+                <td><a href="{% url 'editprocat' id=dt.pcid %}"><button>Edit</button></a></td>
+                <td><a href="{% url 'delprocat' id=dt.pcid %}"><button>Delete</button></a></td>
+            </tr>
+                
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    <p class="fixed-bottom"><a href="{% url 'addprocat' %}"><button class="btn btn-lg">Add New Product Categoy</button></a></p>
+{% endblock 'body' %}
+    

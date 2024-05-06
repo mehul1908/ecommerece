@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block 'title' %}
+LIST OF Product
+{% endblock 'title' %}
+
+
+{% block 'body' %}
+<h1>User List</h1>
+<table class="table table-center text-center" style="margin: 20px;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for dt in data %}
+        {% if 'administrator' not in dt.username %}
+
+        <tr>
+            <td>{{dt.userid}}</td>
+            <td>{{dt.username}}</td>
+            <td>{{dt.age}}</td>
+            <td>{{dt.address}}</td>
+            <td>{{dt.mob}}</td>
+            <td>{{dt.email}}</td>
+            <td><a href="{% url 'edituser' id=dt.userid %}"><button>Edit</button></a></td>
+            <td><a href="{% url 'deluser' id=dt.userid %}"><button>Delete</button></a></td>
+        </tr>
+        {% endif %}
+
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock 'body' %}

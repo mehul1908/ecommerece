@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block 'title' %}
+    LIST OF Product
+{% endblock 'title' %}
+    
+
+{% block 'body' %}
+<h1>Product List</h1>
+    <table class="table table-center text-center" style="margin: 20px;"> 
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for dt in data %}
+            <tr>
+                <td>{{dt.pid}}</td>
+                <td>{{dt.pname}}</td>
+                <td>{{dt.pdesc}}</td>
+                <td>{{dt.price}}</td>
+                <td>{{dt.discount}}</td>
+                <td><a href="{% url 'editpro' id=dt.pid %}"><button>Edit</button></a></td>
+                <td><a href="{% url 'delpro' id=dt.pid %}"><button>Delete</button></a></td>
+            </tr>
+                
+            {% endfor %}
+                
+        </tbody>
+    </table>
+    <p class="fixed-bottom"><a href="{% url 'addpro' %}"><button class="btn btn-lg">Add New Product</button></a></p>
+{% endblock 'body' %}
+    

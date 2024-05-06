@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+Login Form
+{% endblock 'title' %}
+
+
+{% block 'body' %}
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" class="form" >
+                {% csrf_token %}
+                <table style="padding: 2px;">{{myform}}</table>
+                <input type="submit" value="Login">
+        </form>
+
+        <a href="{% url 'adduser' %}">New User , Register Now...</a>
+    </div>
+</div>
+{% endblock 'body' %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block "title" %}
+    Edit User 
+{% endblock "title" %}
+    
+
+{% block 'body' %}
+<script>
+</script>
+    <h1>Edit User</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table>{{myform}}</table>
+        <input type="submit" value="Edit User">
+    </form>
+    <script>
+        document.getElementsByName("userid")[0].setAttribute("disabled","true")
+    </script>
+{% endblock 'body' %}
+    
