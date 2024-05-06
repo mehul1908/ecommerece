@@ -42,7 +42,7 @@ class AddUserProfile(View):
         myform=forms.UserProfileForm(request.POST)
         if myform.is_valid:
             myform.save()
-            return redirect("home")
+            return redirect("login")
         else:
             return HttpResponse("Invalid Data")
         
@@ -135,6 +135,7 @@ class edituser(View):
         data=models.UserProfile.objects.get(userid=id)
         myform=forms.UserProfileForm(request.POST ,instance=data)
         if myform.is_valid():
+            
             myform.save()
             return redirect('showuser')
         else:

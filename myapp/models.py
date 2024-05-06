@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     age=models.IntegerField()
     address=models.CharField(max_length=100)
     mob=models.CharField(max_length=10)
-    email=models.EmailField()
+    email=models.CharField(max_length=30)
     # userid=models.OneToOneField(UserMaster , on_delete=models.CASCADE , primary_key=True)
     userid=models.ForeignKey(UserMaster , on_delete=models.CASCADE)
     def __str__(self):
