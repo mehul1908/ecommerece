@@ -2,14 +2,14 @@ from . import models
 from django import forms
 
 utype=(('buyer',"Buyer"),('seller','Seller'))
-
+cstatus=(('open',"Open") , ('close' , 'Close'))
 class UserMasterForm(forms.ModelForm):
     class Meta:
         model=models.UserMaster
         fields="__all__"
         widgets={
             'password':forms.PasswordInput(),
-            'usertype':forms.Select(choices=utype)
+            'usertype':forms.Select(choices=utype),
         }
 
 class UserProfileForm(forms.ModelForm):
@@ -41,5 +41,6 @@ class ComplaintResponseForm(forms.ModelForm):
         fields="__all__"
         widgets={
             'compdesc':forms.Textarea(attrs= {'name':'compdesc','rows':5,'cols':30}),
-            'response':forms.Textarea(attrs= {'name':'response','rows':5,'cols':30}),        
+            'response':forms.Textarea(attrs= {'name':'response','rows':5,'cols':30}), 
+            'status':forms.Select(choices=cstatus),       
         }

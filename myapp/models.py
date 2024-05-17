@@ -39,7 +39,8 @@ class Product(models.Model):
 class Complaint(models.Model):
     compid=models.IntegerField(auto_created=True,primary_key=True)
     compdesc=models.CharField(max_length=500)
-    compdt=models.DateField()
+    compdt=models.DateField(blank=True,null=True)
+    response=models.CharField(max_length=500,blank=True,null=True)
     status=models.CharField(max_length=10, default="open")
     userid=models.ForeignKey(UserMaster,on_delete=models.CASCADE)
 

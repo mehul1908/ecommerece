@@ -1,0 +1,7 @@
+asgiref==3.72
+Django==4.2.6
+djangorestframework==3.14.0
+PyMySQL==1.1.0
+pytz==2023.3.post1
+sqlparse==0.4.4
+tzdata==2024.3

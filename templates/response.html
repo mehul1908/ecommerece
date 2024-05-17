@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block 'title' %}
+    Response
+{% endblock 'title' %}
+    
+
+{% block 'body' %}
+    <h1>Response Page</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table>{{myform}}</table>
+        <input type="submit" value="Response">
+    </form>
+    <script>
+        document.getElementsByName("compid")[0].setAttribute("readonly","true")
+        document.getElementsByName("compdesc")[0].setAttribute("readonly","true")
+        document.getElementsByName("compdt")[0].setAttribute("readonly","true")
+        // document.getElementsByName("userid")[0].setAttribute("disabled","true")
+        // document.getElementsByName("compid")[0].setAttribute("readonly","true")
+    </script>
+{% endblock 'body' %}

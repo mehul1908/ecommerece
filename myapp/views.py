@@ -258,6 +258,14 @@ def showComplaints(request):
 
 class Response(View):
     def get(self,request,id):
-        pass
+        data = get_object_or_404(models.Complaint , compid=id)
+        myform=forms.ComplaintResponseForm(instance=data)
+        return render(request , 'response.html' , {'myform':myform})
     def post(self,request,id):
-        pass
+        data = get_object_or_404(models.Complaint , compid=id)
+        myform=forms.ComplaintResponseForm(request.POST,instance=data)
+        if myform.is_valid():
+            myform.save()
+            return redirect('showcomps')
+        else:
+            return HttpResponse('Invalid entry')
