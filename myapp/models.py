@@ -45,3 +45,9 @@ class Complaint(models.Model):
 
     def __str__(self):
         return self.compid
+    
+class Order(models.Model):
+    ordid=models.IntegerField(primary_key=True)
+    orddt=models.DateField(unique=False)
+    amount=models.IntegerField()
+    userid=models.ForeignKey(UserMaster,on_delete=models.CASCADE)

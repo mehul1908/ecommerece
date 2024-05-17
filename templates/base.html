@@ -22,51 +22,91 @@
     </style>
 </head> 
 <body background="{% static 'backgroundpic.avif' %}" style="background-size: cover;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">E-Commere</a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'showuser' %}">User List</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Product Category
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{% url 'addprocat' %}">Add</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'showprocat' %}">List</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Product
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{% url 'addpro' %}">Add</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'showpro' %}">List</a></li>
-                </ul>
-              </li>
-            </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">E-Comm</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
             
-            {% if request.session.username %}
-              <h1>Welcome {{request.session.userid}}</h1>
-              <a href="{% url 'logout' %}" class="btn btn-primary" style="background-color: purple;">LogOut</a>
-            {% else %}
-            <a href="{% url 'login' %}" class="btn btn-primary" style="background-color: purple;">LogIn</a>
+            {% if 'admin' in request.session.usertype %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="showusers">User List</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Product Category
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="addprocat">Add Product Category</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="showprocat">Product Category List</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="showorder">View All Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="showcomps">View All Compalints</a>
+            </li>
             {% endif %}
-              
             
-          </div>
+            {% if 'seller' in request.session.usertype %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Products
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="addpro">Add Product</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="showproduct">Product List</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            {% if 'buyer' in request.session.usertype %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shop
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="srch">Search Product</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="showcart">View Cart</a></li>
+                <li><a class="dropdown-item" href="showorder">View Order</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Complaint
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="addcomp">Make Compalint</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="showcomps">Complaint List</a></li>
+              </ul>
+            </li>
+
+            {% endif %}
+            
+          </ul>
+          
+          {% if request.session %}
+              <h4 style="text-align:right;color:white;position:absolute;right:200px;text-decoration:underline">Welcome : {{ request.session.username  }}</h4>
+              <a href="{% url 'logouts' %}"><button class="btn btn-danger" type="submit">Logout</button></a>
+          {% else %}  
+              <a href="{% url 'login' %}"><button class="btn btn-warning" type="submit">Login</button></a>
+          {% endif %}
+            
+          
+         
         </div>
-      </nav>
-      
+      </div>
+    </nav>
       {% block 'body' %}
         
       {% endblock 'body' %}

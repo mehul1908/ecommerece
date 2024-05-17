@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block 'body' %}
+<h3>Your Order List</h3>
+<form method="post">
+    {% csrf_token %}
+<table class="table table-dark table-hover table-striped table-bordered">
+<thead>
+    <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Amount</th>
+        <th>User ID</th>
+    </tr>
+</thead>
+<tbody>
+    {% for dt in mydata %}
+    <tr>
+        <td>{{ dt.ordid }}</td>
+        <td>{{ dt.orddt }}</td>
+        <td>{{ dt.amount }}</td>
+        <td>{{ dt.userid }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</form>
+{% endblock 'body' %}
+    

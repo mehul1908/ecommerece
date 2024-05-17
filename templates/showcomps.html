@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+
+{% block 'body' %}
+<h3>Complaint List</h3>
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr align='center'>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Response</th>
+        <th>Status</th>
+        {% if 'admin' in request.session.usertype %}
+        <th>User</th>
+        <th>Respond</th>
+        {% endif %}    
+    </tr>
+    </thead>
+    <tbody>
+        {% for dt in mydata %}
+        <tr >
+        <td>{{ dt.compdesc }}</td>
+        <td>{{ dt.compdt }}</td>
+        <td>{{ dt.response }}</td>
+        <td>{{ dt.status }}</td> 
+        {% if 'admin' in request.session.usertype %}
+        <td>{{ dt.userid }}</td>
+        <td align='center'><a href="{% url 'response' id=dt.compid %}"><button class="btn-primary">Respond</button></a></td>
+        {% endif %}    
+        </tr>
+        {% endfor %}
+            
+        
+    </tbody>
+</table>
+{% endblock 'body' %}
+    

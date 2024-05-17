@@ -27,3 +27,19 @@ class ProductForm(forms.ModelForm):
         model=models.Product
         fields='__all__'
 
+class ComplaintForm(forms.ModelForm):
+    class Meta:
+        model=models.Complaint
+        fields=['compdesc',]
+        widgets={
+            'compdesc':forms.Textarea(attrs= {'name':'compdesc','rows':5,'cols':30}),
+        }
+
+class ComplaintResponseForm(forms.ModelForm):
+    class Meta:
+        model=models.Complaint
+        fields="__all__"
+        widgets={
+            'compdesc':forms.Textarea(attrs= {'name':'compdesc','rows':5,'cols':30}),
+            'response':forms.Textarea(attrs= {'name':'response','rows':5,'cols':30}),        
+        }
